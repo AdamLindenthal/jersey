@@ -51,6 +51,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.examples.shortener.webapp.domain.ShortenedLink;
 import org.glassfish.jersey.examples.shortener.webapp.service.ShortenerService;
 import org.glassfish.jersey.server.validation.ValidationError;
@@ -60,12 +62,13 @@ import org.glassfish.jersey.test.ServletDeploymentContext;
 import org.glassfish.jersey.test.TestProperties;
 
 import org.junit.Test;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.MustacheFactory;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Michal Gajdos
@@ -81,6 +84,11 @@ public class ResourcesTest extends JerseyTest {
 
         return ServletDeploymentContext.builder(ShortenerApplication.class)
                 .contextPath("shortener-webapp").servletPath("/").build();
+    }
+
+    @Override
+    protected void configureClient(ClientConfig config) {
+        config.property(ClientProperties.FOLLOW_REDIRECTS, false);
     }
 
     @Test
@@ -121,12 +129,12 @@ public class ResourcesTest extends JerseyTest {
 
     @Test
     public void testResolveLink() throws Exception {
-        final Form form = new Form("link", "https://java.net/");
+        final Form form = new Form("link", "https://foo-domain.com/");
         final Response created = target().request("text/html").post(Entity.form(form));
 
         assertThat(created.getStatus(), equalTo(200));
 
-        final ShortenedLink shortenedLink = ShortenerService.shortenLink(getBaseUri(), "https://java.net/");
+        final ShortenedLink shortenedLink = ShortenerService.shortenLink(getBaseUri(), "https://foo-domain.com/");
         final Response resolved = client().target(shortenedLink.getShortened()).request().get();
 
         assertThat(resolved.getStatus(), equalTo(301));

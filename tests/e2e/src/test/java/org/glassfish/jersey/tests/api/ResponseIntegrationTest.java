@@ -47,10 +47,13 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -61,6 +64,11 @@ public class ResponseIntegrationTest extends JerseyTest {
     @Override
     protected ResourceConfig configure() {
         return new ResourceConfig(ResponseIntegrationTest.ResponseTest.class);
+    }
+
+    @Override
+    protected void configureClient(ClientConfig config) {
+        config.property(ClientProperties.FOLLOW_REDIRECTS, false);
     }
 
     @Path(value = "/ResponseTest")

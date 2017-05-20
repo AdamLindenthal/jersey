@@ -65,6 +65,7 @@ allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-common*
 allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-common*"] (java.lang.RuntimePermission "getClassLoader") } "getCLToJerseyCommon";
 allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-common*"] (java.lang.RuntimePermission "modifyThread") } "modifyThreadToJerseyCommon";
 allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-common*"] (java.util.PropertyPermission "*" "read") } "propReadToJerseyCommon";
+allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-client*"] (java.util.PropertyPermission "*" "read") } "propReadToJerseyClient";
 allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-common*"] (java.io.FilePermission "<<ALL FILES>>" "read,write") } "fileReadToJerseyCommon";
 allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-client*"] (java.security.AllPermission) } "allToJerseyClient";
 allow { [org.osgi.service.condpermadmin.BundleLocationCondition "*jersey-server*"] (org.osgi.framework.AdminPermission "*" "class,resolve,resource") } "adminPermissionToJerseyServer";

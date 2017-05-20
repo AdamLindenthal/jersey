@@ -159,7 +159,7 @@ public class ClientConfig implements Configurable<ClientConfig>, ExtendedConfig 
             if (iterator.hasNext()) {
                 this.connectorProvider = iterator.next();
             } else {
-                this.connectorProvider = new HttpUrlConnectorProvider();
+                this.connectorProvider = new JdkConnectorProvider();
             }
         }
 
@@ -726,7 +726,7 @@ public class ClientConfig implements Configurable<ClientConfig>, ExtendedConfig 
      * Get the client transport connector provider.
      *
      * If no custom connector provider has been set,
-     * {@link org.glassfish.jersey.client.HttpUrlConnectorProvider default connector provider}
+     * {@link org.glassfish.jersey.client.JdkConnectorProvider default connector provider}
      * instance is returned.
      *
      * @return configured client transport connector provider.

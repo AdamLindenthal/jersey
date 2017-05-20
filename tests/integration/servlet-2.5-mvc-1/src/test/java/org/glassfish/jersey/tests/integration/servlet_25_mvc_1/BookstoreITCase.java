@@ -53,7 +53,7 @@ public class BookstoreITCase extends TestSupport {
 
     @Test
     public void testResourceAsHtml() throws Exception {
-        assertBookstoreHtmlResponse(target().request().get(String.class));
+        assertBookstoreHtmlResponse(target().request().accept("text/html").get(String.class));
     }
 
     @Test

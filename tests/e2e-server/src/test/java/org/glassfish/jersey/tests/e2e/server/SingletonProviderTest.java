@@ -87,10 +87,10 @@ public class SingletonProviderTest extends JerseyTest {
     @Test
     public void filterTest() {
         String str;
-        str = target().path("resource/filter").request().get().readEntity(String.class);
+        str = target().path("resource/filter").request().accept("text/foo").get().readEntity(String.class);
         assertEquals("filter:1", str);
 
-        str = target().path("resource/filter").request().get().readEntity(String.class);
+        str = target().path("resource/filter").request().accept("text/foo").get().readEntity(String.class);
         assertEquals("filter:2", str);
     }
 
@@ -98,9 +98,9 @@ public class SingletonProviderTest extends JerseyTest {
     @Test
     public void exceptionMapperTest() {
         String str;
-        str = target().path("resource/exception").request().get().readEntity(String.class);
+        str = target().path("resource/exception").request().accept("text/foo").get().readEntity(String.class);
         assertEquals("mapper:1", str);
-        str = target().path("resource/exception").request().get().readEntity(String.class);
+        str = target().path("resource/exception").request().accept("text/foo").get().readEntity(String.class);
         assertEquals("mapper:2", str);
 
     }

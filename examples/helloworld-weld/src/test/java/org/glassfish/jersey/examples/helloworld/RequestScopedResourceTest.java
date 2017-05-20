@@ -52,9 +52,11 @@ import org.glassfish.jersey.test.util.runner.ConcurrentParameterizedRunner;
 import org.jboss.weld.environment.se.Weld;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -65,6 +67,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author Jakub Podlesak (jakub.podlesak at oracle.com)
  */
+@Ignore // JdkConnector migration - thread exhaustion
 @RunWith(ConcurrentParameterizedRunner.class)
 public class RequestScopedResourceTest extends JerseyTest {
 

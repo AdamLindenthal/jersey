@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2013-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013-2017 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -41,11 +41,13 @@
 package org.glassfish.jersey.tests.integration.servlet_25_mvc_3;
 
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.tests.integration.servlet_25_mvc_3.resource.Book;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -54,7 +56,7 @@ public class ItemITCase extends TestSupport {
 
     @Test
     public void testResourceAsHtml() throws Exception {
-        final String response = item1resource().request().get(String.class);
+        final String response = item1resource().request().accept(MediaType.TEXT_HTML).get(String.class);
         assertItemHtmlResponse(response);
     }
 

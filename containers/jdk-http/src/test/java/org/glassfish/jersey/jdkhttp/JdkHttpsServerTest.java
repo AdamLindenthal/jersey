@@ -44,6 +44,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -51,20 +53,19 @@ import javax.ws.rs.core.UriBuilder;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLHandshakeException;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 
 import org.glassfish.jersey.SslConfigurator;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpsConfigurator;
-import com.sun.net.httpserver.HttpsServer;
+import org.junit.After;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import com.google.common.io.ByteStreams;
 
-import org.junit.After;
-import org.junit.Test;
+import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.HttpsConfigurator;
+import com.sun.net.httpserver.HttpsServer;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
@@ -125,6 +126,7 @@ public class JdkHttpsServerTest extends AbstractJdkHttpServerTester {
      * not configured correctly.
      * @throws Exception
      */
+    @Ignore // JdkConnector migration
     @Test(expected = SSLHandshakeException.class)
     public void testCreateHttpsServerDefaultSslContext() throws Throwable {
         server = JdkHttpServerFactory.createHttpServer(httpsUri, rc, SSLContext.getDefault(), true);

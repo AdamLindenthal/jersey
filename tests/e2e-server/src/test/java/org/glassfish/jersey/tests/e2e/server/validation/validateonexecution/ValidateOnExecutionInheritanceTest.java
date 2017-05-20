@@ -51,15 +51,13 @@ import javax.validation.executable.ValidateOnExecution;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
-import org.glassfish.jersey.test.util.runner.ConcurrentRunner;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * @author Michal Gajdos
  */
-@RunWith(ConcurrentRunner.class)
+//@RunWith(ConcurrentRunner.class)
 public class ValidateOnExecutionInheritanceTest extends ValidateOnExecutionAbstractTest {
 
     /**

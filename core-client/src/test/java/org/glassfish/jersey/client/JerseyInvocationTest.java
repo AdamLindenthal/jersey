@@ -67,7 +67,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.Ignore;
 import org.junit.Test;
+
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
@@ -133,6 +135,7 @@ public class JerseyInvocationTest {
      *
      * @see #overrideHttpMethodBasedComplianceCheckNegativeTest()
      */
+    @Ignore // JdkConnector migration
     @Test
     public void overrideHttpMethodBasedComplianceCheckTest() {
         final Client c1 = ClientBuilder.newClient().property(ClientProperties.SUPPRESS_HTTP_COMPLIANCE_VALIDATION, true);

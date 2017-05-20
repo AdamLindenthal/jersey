@@ -114,6 +114,7 @@ import static org.junit.Assert.assertThat;
  * @author Paul Sandoz
  * @author Martin Matula
  */
+@Ignore
 @RunWith(ConcurrentRunner.class)
 public class EntityTypesTest extends AbstractTypeTester {
 

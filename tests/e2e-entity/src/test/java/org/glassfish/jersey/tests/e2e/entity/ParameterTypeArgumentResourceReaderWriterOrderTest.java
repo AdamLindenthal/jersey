@@ -60,8 +60,8 @@ public class ParameterTypeArgumentResourceReaderWriterOrderTest extends Abstract
 
     @Test
     public void testClassResource() {
-        assertEquals("AA", target().path("a").request().get(String.class));
-        assertEquals("BB", target().path("b").request().get(String.class));
-        assertEquals("CC", target().path("c").request().get(String.class));
+        assertEquals("AA", target().path("a").request().accept("text/html").get(String.class));
+        assertEquals("BB", target().path("b").request().accept("text/html").get(String.class));
+        assertEquals("CC", target().path("c").request().accept("text/html").get(String.class));
     }
 }

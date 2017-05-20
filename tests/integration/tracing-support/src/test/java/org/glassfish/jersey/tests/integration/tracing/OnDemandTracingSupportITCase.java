@@ -129,7 +129,7 @@ public class OnDemandTracingSupportITCase extends JerseyTest {
 
     private boolean hasX_Jersey_Trace(Response response) {
         for (String k : response.getHeaders().keySet()) {
-            if (k.startsWith(Utils.HEADER_TRACING_PREFIX)) {
+            if (k.toLowerCase().startsWith(Utils.HEADER_TRACING_PREFIX.toLowerCase())) {
                 return true;
             }
         }

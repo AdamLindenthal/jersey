@@ -63,6 +63,7 @@ import javax.inject.Singleton;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -101,12 +102,13 @@ public class SseEventSinkCloseTest extends JerseyTest {
         }
     }
 
-    /**
+        /**
      * The test test that SSE connection is really closed when SseEventSource.close() is called.
      * <p/>
      * This test is very HttpURLConnection and Grizzly server specific, so it will probably fail, if other client and server
      * transport are used.
      */
+    @Ignore // JdkConnector migration
     @Test
     public void testClose() throws InterruptedException {
         WebTarget sseTarget = target("sse");

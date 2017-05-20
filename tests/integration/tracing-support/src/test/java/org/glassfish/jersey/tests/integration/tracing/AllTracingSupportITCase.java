@@ -215,7 +215,7 @@ public class AllTracingSupportITCase extends JerseyTest {
         int exceptionMapping = 0;
 
         for (String k : response.getHeaders().keySet()) {
-            if (k.startsWith(Utils.HEADER_TRACING_PREFIX)) {
+            if (k.toLowerCase().startsWith(Utils.HEADER_TRACING_PREFIX.toLowerCase())) {
                 String value = response.getHeaderString(k);
                 if (value.startsWith(ServerTraceEvent.FINISHED.category())) {
                     finished++;

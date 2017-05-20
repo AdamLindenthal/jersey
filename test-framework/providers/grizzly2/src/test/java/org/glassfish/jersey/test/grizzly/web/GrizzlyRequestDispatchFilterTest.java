@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2013-2015 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013-2017 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -55,6 +55,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.test.DeploymentContext;
@@ -219,6 +221,13 @@ public class GrizzlyRequestDispatchFilterTest extends JerseyTest {
                 .addFilter(RegularFilter.class, "regularFilter")
                 .initParam(ServerProperties.PROVIDER_PACKAGES, this.getClass().getPackage().getName())
                 .build();
+    }
+
+    @Override
+    protected void configureClient(ClientConfig config) {
+        // Cannot be used with the default connector (JdkConnector), as it (as opposed to HttpUrlConnector) DOES check if
+        // declared content length matches the consumed + remaining length
+        config.connectorProvider(new HttpUrlConnectorProvider());
     }
 
     @Override

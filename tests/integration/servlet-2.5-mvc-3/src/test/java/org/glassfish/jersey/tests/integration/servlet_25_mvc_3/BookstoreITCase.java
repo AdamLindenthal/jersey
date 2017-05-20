@@ -40,9 +40,12 @@
 
 package org.glassfish.jersey.tests.integration.servlet_25_mvc_3;
 
+import javax.ws.rs.core.MediaType;
+
 import org.glassfish.jersey.tests.integration.servlet_25_mvc_3.resource.Bookstore;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -50,7 +53,7 @@ public class BookstoreITCase extends TestSupport {
 
     @Test
     public void testResourceAsHtml() throws Exception {
-        assertBookstoreHtmlResponse(target().request().get(String.class));
+        assertBookstoreHtmlResponse(target().request().accept(MediaType.TEXT_HTML).get(String.class));
     }
 
     @Test

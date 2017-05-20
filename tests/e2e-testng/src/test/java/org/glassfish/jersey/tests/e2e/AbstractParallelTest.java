@@ -63,7 +63,7 @@ import static org.testng.Assert.assertEquals;
  *
  * @author Michal Gajdos
  */
-@Test(threadPoolSize = 5, invocationCount = 13)
+@Test(threadPoolSize = 15, invocationCount = 30)
 public abstract class AbstractParallelTest extends JerseyTestNg {
 
     @Path("/")

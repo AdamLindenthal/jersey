@@ -59,12 +59,14 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -126,6 +128,11 @@ public class AbortingFilterTest extends JerseyTest {
     protected ResourceConfig configure() {
         enable(TestProperties.LOG_TRAFFIC);
         return new ResourceConfig(FilterDynamicBinding.class, SimpleTestResource.class, LoggingFeature.class);
+    }
+
+    @Override
+    protected void configureClient(ClientConfig config) {
+        config.connectorProvider(new HttpUrlConnectorProvider());
     }
 
     /**
